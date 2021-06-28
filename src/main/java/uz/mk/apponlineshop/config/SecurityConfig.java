@@ -28,13 +28,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .inMemoryAuthentication()
-                .withUser("s").password(passwordEncoder().encode("123")).roles(Role.SUPER_ADMIN)
+                .withUser("super_admin").password(passwordEncoder().encode("123")).roles(Role.SUPER_ADMIN)
                 .authorities(Authority.READ_ALL, Authority.READ_ONE, Authority.ADD, Authority.EDIT, Authority.DELETE)
                 .and()
-                .withUser("m").password(passwordEncoder().encode("123")).roles(Role.MODERATOR)
+                .withUser("moderator").password(passwordEncoder().encode("123")).roles(Role.MODERATOR)
                 .authorities(Authority.READ_ALL, Authority.READ_ONE, Authority.ADD, Authority.EDIT)
                 .and()
-                .withUser("o").password(passwordEncoder().encode("123")).roles(Role.OPERATOR)
+                .withUser("operator").password(passwordEncoder().encode("123")).roles(Role.OPERATOR)
                 .authorities(Authority.READ_ALL, Authority.READ_ONE);
     }
 
