@@ -10,12 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import uz.mk.apponlineshop.entity.User;
 import uz.mk.apponlineshop.payload.ApiResponse;
 import uz.mk.apponlineshop.payload.UserDto;
+import uz.mk.apponlineshop.repository.UserRepository;
 import uz.mk.apponlineshop.service.UserService;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/user")
@@ -23,6 +22,16 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @GetMapping("/byNames")
+    public HttpEntity<?> getAllByNames() {
+        List<User> users = userRepository.findAllByNative(Arrays.asList("A","C"));
+        return ResponseEntity.ok(users);
+    }
+
 
     @GetMapping
     public HttpEntity<?> getAll() {

@@ -32,5 +32,5 @@ public class Product extends AbsEntity {
     private String description;
 
     @ManyToMany
-    private List<Characteristic> characteristic;
+    private List<Property> property;
 }
